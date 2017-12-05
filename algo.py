@@ -75,6 +75,19 @@ def check_status(position,distant,type,zip):
             print(new_distance)
             print(new_zip1)
             print(new_zip2)
+			
+			if(increment==1):
+
+                if(zip1==new_zip1[0]):
+                    print("if increment=1 if ")
+                    length=0
+                    total_distance=new_distance[0]+distance1
+                    check_status(new_zip2[0], total_distance, type, zip)
+                else:
+                    print("if increment=1 else")
+                    length=0
+                    total_distance = new_distance[0] + distance2
+                    check_status(new_zip2[0], total_distance, type, zip)
 
 
 
