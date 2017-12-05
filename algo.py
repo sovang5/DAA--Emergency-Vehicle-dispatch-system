@@ -60,7 +60,21 @@ def check_status(position,distant,type,zip):
             print(zip)
             distance1=distance[1]
             distance2=distance[2]
-            
+            c.execute("select * from distance where zipcode1=%s and  distance<>0 and zipcode2 is not %s or zipcode1=%s and  distance<>0 and zipcode2 is not %s order by distance,zipcode1 asc"%(zip1,zip,zip2,zip))
+            result=c.fetchall()
+            increment=0
+            new_distance=[]
+            new_zip1=[]
+            new_zip2=[]
+            for val in result:
+                print(val)
+                increment=increment+1
+                new_distance.append(val[3])
+                new_zip1.append(val[1])
+                new_zip2.append(val[2])
+            print(new_distance)
+            print(new_zip1)
+            print(new_zip2)
 
 
 
