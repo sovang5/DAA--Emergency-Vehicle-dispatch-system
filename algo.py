@@ -126,7 +126,14 @@ def check_status(position,distant,type,zip):
                         check_status(new_position, distant+val[3], type, zip)
 			else:
 
+				new_position = position - 1
+                c.execute("select * from distance where zipcode1=%s and zipcode2=%s order by distance asc" % (
+                position, new_position))
+                rows = c.fetchall()
+                for val in rows:
+                    check_status(new_position, distant + val[3], type, zip)
 
+            #print("no vehicle Avialable")
 
 if __name__ == '__main__':
     start_algo()
