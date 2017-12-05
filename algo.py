@@ -89,7 +89,27 @@ def check_status(position,distant,type,zip):
                     total_distance = new_distance[0] + distance2
                     check_status(new_zip2[0], total_distance, type, zip)
 
-
+			else:
+                print("inside else")
+                c.execute("select available from evehicle where zipcode=%s and type=%s"%(new_zip2[0],type))
+                rows=c.fetchall()
+                for val in rows:
+                    confirmation=val[0]
+                    print(confirmation)
+                if(zip1==new_zip1[0] and confirmation=='y'):
+                    print("if")
+                    length=0
+                    total_distance=distance1+new_distance[0]
+                    check_status(new_zip2[0], total_distance, type, zip)
+                elif(zip2==new_zip1[0] and confirmation=='y'):
+                    print("elif")
+                    total_distance = distance2 + new_distance[0]
+                    check_status(new_zip2[0], total_distance, type, zip)
+                else:
+                    print("else")
+                    length = 0
+                    total_distance = distance2 + new_distance[1]
+                    check_status(new_zip2[1], total_distance, type, zip)
 
 
 
