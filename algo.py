@@ -110,7 +110,21 @@ def check_status(position,distant,type,zip):
                     length = 0
                     total_distance = distance2 + new_distance[1]
                     check_status(new_zip2[1], total_distance, type, zip)
+		
+		else:
+            print(position)
+            print(zip)
+            if (position>int(zip)):
 
+                new_position=position+1
+                c.execute("select * from distance where zipcode1=%s and zipcode2=%s order by distance asc" % (position,new_position))
+                rows = c.fetchall()
+                if len(rows)==0:
+                    check_status(int(zip)-1, distance[1], type, zip)
+                else:
+                    for val in rows:
+                        check_status(new_position, distant+val[3], type, zip)
+			else:
 
 
 
